@@ -2,9 +2,9 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg,
-            #de7575,
-            #C1121F,
-            #d66972);
+            #d7c2c2,
+            #d9575f,
+            #ddcdce);
     min-height: 100vh;
     padding-top: 1px;
 }
@@ -17,11 +17,12 @@ body {
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(192, 28, 28, 0.25);
     box-sizing: border-box;
+    transform: translateY(80px);
 }
 
 h1 {
     text-align: center;
-    color: #B11226;
+    color: #e8dfdf;
     margin-bottom: 30px;
 }
 
@@ -37,7 +38,7 @@ input:hover{
 }
 small {
     display: block;
-    color: #444f14;
+    color: #fefffa;
     font-weight: bolder;
     width: 200px;
     margin: auto;
