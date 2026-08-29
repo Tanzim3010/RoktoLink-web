@@ -1,133 +1,605 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,
-            #d7c2c2,
-            #d9575f,
-            #ddcdce);
-    min-height: 100vh;
-    padding-top: 1px;
+/* =========================
+   BASIC STYLE
+========================= */
+
+* {
+    box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding-top: 1px;
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(135deg,
+            #eccfcf,
+            #d9575f,
+            #ddcdce);
+}
+
+
+/* =========================
+   LOGIN AND SIGN-UP CONTAINER
+========================= */
+
 .container {
-    background: #650000;
     width: 450px;
-    padding: 30px;
     margin: 50px auto;
+    padding: 30px;
+
+    background: #650000;
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(192, 28, 28, 0.25);
-    box-sizing: border-box;
+
     transform: translateY(80px);
 }
 
-h1 {
-    text-align: center;
-    color: #e8dfdf;
+.container h1 {
     margin-bottom: 30px;
+    color: #e8dfdf;
+    text-align: center;
 }
 
-label {
+.container label {
     display: block;
+    margin-bottom: 8px;
+
     color: #e8e2e2;
     font-weight: bold;
- margin-bottom: 8px;
 }
 
-input:hover{
-    transform: scaleY(1.1);
-}
-small {
+.container small {
     display: block;
-    color: #fefffa;
-    font-weight: bolder;
     width: 200px;
     margin: auto;
+
+    color: #fefffa;
+    font-weight: bolder;
     text-align: center;
 }
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"] {
+
+
+/* Login and Sign-up Inputs */
+
+.container input[type="text"],
+.container input[type="email"],
+.container input[type="password"],
+.container input[type="number"] {
     width: 100%;
-    padding: 12px;
     margin-bottom: 18px;
-    border: 1px solid #ccc;
+    padding: 12px;
+
+    border: 1px solid #cccccc;
     border-radius: 6px;
-    box-sizing: border-box;
+
     font-size: 15px;
+    transition: 0.2s;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus,
-input[type="number"]:focus {
+.container input[type="text"]:focus,
+.container input[type="email"]:focus,
+.container input[type="password"]:focus,
+.container input[type="number"]:focus {
     outline: none;
-    border-color: #C1121F;
+    border-color: #c1121f;
     box-shadow: 0 0 5px rgba(193, 18, 31, 0.3);
 }
 
-
-
-
-input[type="text"]:hover,
-input[type="email"]:hover,
-input[type="password"]:hover,
-input[type="number"]:hover {
-    border-color: #C1121F;
+.container input[type="text"]:hover,
+.container input[type="email"]:hover,
+.container input[type="password"]:hover,
+.container input[type="number"]:hover {
+    border-color: #c1121f;
+    transform: scaleY(1.03);
 }
 
-input[type="submit"] {
+
+/* Login and Sign-up Submit Button */
+
+.container input[type="submit"] {
     width: 100%;
+    margin-top: 5px;
     padding: 12px;
-    background: #B11226;
+
     color: white;
- border: none;
+    background: #b11226;
+
+    border: none;
     border-radius: 6px;
+
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 5px;
- transition: 0.2s;
+    transition: 0.2s;
 }
 
-
-input[type="submit"]:hover {
-    background: #8B0000;
+.container input[type="submit"]:hover {
+    background: #8b0000;
     transform: scale(1.02);
 }
 
 
+/* Login and Sign-up Switch */
 
 .switch {
-    text-align: center;
     margin-top: 25px;
+    color: #333333;
     font-size: 14px;
-    color: #333;
+    text-align: center;
 }
 
-
 .switch span {
-    font-weight: bold;
     margin-right: 8px;
+    font-weight: bold;
 }
 
 #signUP,
 #signIn {
     width: auto;
     height: auto;
-    padding: 8px 18px;
     margin: 0;
-    background-color: #8B0000;
+    padding: 8px 18px;
+
     color: white;
+    background-color: #8b0000;
+
     border: none;
     border-radius: 20px;
+
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.2s;
 }
+
 #signUP:hover,
 #signIn:hover {
-    background-color: #B11226;
+    background-color: #b11226;
     transform: scale(1.05);
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+    width: 90%;
+    max-width: 850px;
+    margin: 45px auto 35px;
+    padding: 40px 25px;
+
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(101, 0, 0, 0.22);
+
+    text-align: center;
+}
+
+.dashboard h1 {
+    margin-top: 0;
+    margin-bottom: 15px;
+
+    color: #c1121f;
+    font-size: 35px;
+}
+
+.dashboard p {
+    max-width: 550px;
+    margin: 0 auto 25px;
+
+    color: #555555;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+
+/* Dashboard Create Profile Button */
+
+#profile {
+    padding: 13px 25px;
+
+    color: #ffffff;
+    background-color: #d62828;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#profile:hover {
+    background-color: #a4161a;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   PROFILE MAIN CONTAINER
+========================= */
+
+.profile-container {
+    display: none;
+    width: 95%;
+    max-width: 1050px;
+    margin: 0 auto 50px;
+
+    align-items: flex-start;
+    justify-content: center;
+    gap: 30px;
+}
+
+
+/* =========================
+   PROFILE FORM SECTION
+========================= */
+
+.form-section {
+    width: 100%;
+    max-width: 560px;
+    padding: 30px;
+
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(101, 0, 0, 0.22);
+}
+
+.form-section h1 {
+    margin-top: 0;
+    margin-bottom: 25px;
+
+    color: #c1121f;
+    text-align: center;
+}
+
+
+/* Profile Form */
+
+#createProfileForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#createProfileForm label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 7px;
+
+    color: #333333;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#createProfileForm input,
+#createProfileForm select,
+#createProfileForm textarea {
+    width: 100%;
+    padding: 12px;
+
+    color: #333333;
+    background-color: #ffffff;
+
+    border: 1px solid #cccccc;
+    border-radius: 7px;
+    outline: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#createProfileForm input:focus,
+#createProfileForm select:focus,
+#createProfileForm textarea:focus {
+    border-color: #d62828;
+    box-shadow: 0 0 0 3px rgba(214, 40, 40, 0.12);
+}
+
+#createProfileForm input:hover,
+#createProfileForm select:hover,
+#createProfileForm textarea:hover {
+    border-color: #d62828;
+}
+
+#createProfileForm textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+#createProfileForm input[type="file"] {
+    cursor: pointer;
+}
+
+
+/* File Choose Button */
+
+#createProfileForm input[type="file"]::file-selector-button {
+    margin-right: 10px;
+    padding: 9px 14px;
+
+    color: #ffffff;
+    background-color: #d62828;
+
+    border: none;
+    border-radius: 6px;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#createProfileForm input[type="file"]::file-selector-button:hover {
+    background-color: #a4161a;
+}
+
+
+/* =========================
+   IMAGE PREVIEW
+========================= */
+
+.image-preview {
+    position: relative;
+
+    display: flex;
+    width: 150px;
+    height: 150px;
+    margin: 5px auto 15px;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: #f5f5f5;
+    border: 2px dashed #d62828;
+    border-radius: 50%;
+
+    overflow: hidden;
+}
+
+#previewImage {
+    display: none;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#imageText {
+    margin: 0;
+    padding: 15px;
+
+    color: #888888;
+    font-size: 13px;
+    text-align: center;
+}
+
+
+/* =========================
+   PROFILE SUBMIT BUTTON
+========================= */
+
+.submit-button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 13px;
+
+    color: #ffffff;
+    background-color: #d62828;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #a4161a;
+    transform: scale(1.01);
+}
+
+
+/* =========================
+   PROFILE CARD
+========================= */
+
+.profile-card {
+    display: none;
+    width: 100%;
+    max-width: 330px;
+    padding: 25px;
+
+    background-color: #ffffff;
+    border: 2px solid #d62828;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(101, 0, 0, 0.25);
+}
+
+
+/* Profile Card Heading */
+
+.card-heading {
+    margin: -25px -25px 20px;
+    padding: 14px;
+
+    color: #ffffff;
+    background-color: #d62828;
+
+    border-radius: 13px 13px 0 0;
+
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+
+/* Selected Profile Image */
+
+#cardImage {
+    display: none;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+
+    object-fit: cover;
+
+    border: 4px solid #d62828;
+    border-radius: 50%;
+}
+
+
+/* Default Profile Circle */
+
+.default-profile-image {
+    display: flex;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: #ffe1e1;
+    border: 4px solid #d62828;
+    border-radius: 50%;
+
+    font-size: 55px;
+}
+
+
+/* Profile Card Name */
+
+.profile-card h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+
+    color: #333333;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+
+/* Blood Group Badge */
+
+.blood-badge {
+    width: fit-content;
+    margin: 0 auto 20px;
+    padding: 8px 18px;
+
+    color: #ffffff;
+    background-color: #d62828;
+
+    border-radius: 25px;
+
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* Profile Information */
+
+.profile-information {
+    padding-top: 10px;
+    border-top: 1px solid #eeeeee;
+}
+
+.profile-information p {
+    margin: 12px 0;
+
+    color: #555555;
+    font-size: 14px;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+.profile-information strong {
+    color: #222222;
+}
+
+
+/* Availability Status */
+
+.availability-status {
+    font-weight: bold;
+}
+
+.available {
+    color: #138a36;
+}
+
+.not-available {
+    color: #d62828;
+}
+
+
+/* Edit Profile Button */
+
+#editProfile {
+    width: 100%;
+    margin-top: 15px;
+    padding: 11px;
+
+    color: #d62828;
+    background-color: #ffffff;
+
+    border: 2px solid #d62828;
+    border-radius: 7px;
+
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#editProfile:hover {
+    color: #ffffff;
+    background-color: #d62828;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media screen and (max-width: 850px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    .container {
+        width: 95%;
+        margin: 20px auto;
+        transform: translateY(20px);
+    }
+
+    .dashboard {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .dashboard h1 {
+        font-size: 27px;
+    }
+
+    .profile-container {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-section {
+        max-width: 600px;
+        padding: 22px;
+    }
+
+    .profile-card {
+        max-width: 500px;
+    }
 }

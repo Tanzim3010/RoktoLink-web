@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rokto Link - Dashboard</title>
+
+    <link rel="stylesheet" href="/Css/style.css">
+</head>
+
+<body>
+
+    <!-- Dashboard Section -->
+    <div class="dashboard">
+
+        <h1>Welcome to Rokto Link ❤️</h1>
+
+        <p>
+            Create your donor profile so people can find you
+            when blood is needed.
+        </p>
+
+        <button type="button" id="profile">
+            Create Profile
+        </button>
+
+    </div>
+
+
+    <!-- Profile Form and Profile Card Container -->
+    <div class="profile-container" id="profileForm">
+
+        <!-- Form Section -->
+        <div class="form-section">
+
+            <h1>Create Your Profile</h1>
+
+            <form id="createProfileForm">
+
+                <!-- Profile Picture -->
+                <label for="profilePicture">
+                    Profile Picture
+                </label>
+
+                <div class="image-preview">
+                    <img id="previewImage" src="" alt="Profile Preview">
+                    <p id="imageText">No image selected</p>
+                </div>
+
+                <input type="file" id="profilePicture" name="profilePicture" accept="image/png, image/jpeg, image/jpg">
+
+
+                <!-- Full Name -->
+                <label for="fullName">
+                    Full Name
+                </label>
+
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+
+
+                <!-- Blood Group -->
+                <label for="bloodGroup">
+                    Blood Group
+                </label>
+
+                <select id="bloodGroup" name="bloodGroup" required>
+
+                    <option value="">
+                        Select Blood Group
+                    </option>
+
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+
+                </select>
+
+
+                <!-- Phone Number -->
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input type="tel" id="phone" name="phone" placeholder="01XXXXXXXXX" maxlength="11" pattern="01[0-9]{9}"
+                    required>
+
+
+                <!-- Email -->
+                <label for="profileEmail">
+                    Email
+                </label>
+
+                <input type="email" id="profileEmail" name="profileEmail" placeholder="Enter your email" required>
+
+
+                <!-- Date of Birth -->
+                <label for="dob">
+                    Date of Birth
+                </label>
+
+                <input type="date" id="dob" name="dob" required>
+
+
+                <!-- Address -->
+                <label for="address">
+                    Address
+                </label>
+
+                <textarea id="address" name="address" placeholder="Enter your address" rows="4" required></textarea>
+
+
+                <!-- Last Donation Date -->
+                <label for="lastDonation">
+                    Last Blood Donation Date
+                </label>
+
+                <input type="date" id="lastDonation" name="lastDonation">
+
+
+                <!-- Availability -->
+                <label for="availability">
+                    Available for Blood Donation?
+                </label>
+
+                <select id="availability" name="availability" required>
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="Yes">
+                        Yes
+                    </option>
+
+                    <option value="No">
+                        No
+                    </option>
+
+                </select>
+
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-button">
+                    Create Profile
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- Profile Card -->
+        <div class="profile-card" id="profileCard">
+
+            <div class="card-heading">
+                <span>DONOR PROFILE</span>
+            </div>
+
+
+            <!-- Selected Profile Image -->
+
+
+
+            <!-- Default Profile Image -->
+            <div class="default-profile-image" id="defaultProfileImage">
+                👤
+            </div>
+
+
+            <!-- Donor Name -->
+            <h2 id="cardName">
+                Donor Name
+            </h2>
+
+
+            <!-- Blood Group -->
+            <div class="blood-badge" id="cardBlood">
+                Blood Group
+            </div>
+
+
+            <!-- Profile Information -->
+            <div class="profile-information">
+
+                <p>
+                    <strong>📞 Phone:</strong>
+                    <span id="cardPhone"></span>
+                </p>
+
+                <p>
+                    <strong>✉️ Email:</strong>
+                    <span id="cardEmail"></span>
+                </p>
+
+                <p>
+                    <strong>🎂 Date of Birth:</strong>
+                    <span id="cardDob"></span>
+                </p>
+
+                <p>
+                    <strong>📍 Address:</strong>
+                    <span id="cardAddress"></span>
+                </p>
+
+                <p>
+                    <strong>🩸 Last Donation:</strong>
+                    <span id="cardDonation"></span>
+                </p>
+
+                <p>
+                    <strong>✅ Available:</strong>
+
+                    <span id="cardAvailability" class="availability-status"></span>
+                </p>
+
+            </div>
+
+
+            <!-- Edit Profile Button -->
+            <button type="button" id="editProfile">
+                Edit Profile
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="/javascript/script.js"></script>
+</body>
+
+</html>
