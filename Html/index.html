@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/Css/style.css">
+
+    <title>Rokto Link - Blood Donation</title>
+</head>
+
+<body>
+
+
+    <div class="container" id="signupForm" style="display: none;">
+
+        <h1>Register</h1>
+
+        <form>
+
+            <label>First Name</label>
+            <input type="text" id="signupName" placeholder="Enter Name" required>
+            <small id="nameError"></small>
+
+            <label>Email :</label>
+            <input type="email" id="signupEmail" placeholder="Enter Email" required>
+            <small id="emailError"></small>
+
+            <label>NID :</label>
+            <input type="number" id="nid" placeholder="Enter NID Number" required>
+            <small id="nidError"></small>
+            <label>Password :</label>
+            <input type="password" id="signupPass" placeholder="Enter Password" required>
+            <small id="passError"></small>
+            <input type="submit" value="Sign Up" id="registerButton">
+
+            <div class="switch">
+                <span>Already have an account?</span>
+                <input type="button" value="Login" id="signIn">
+            </div>
+
+        </form>
+
+    </div>
+
+
+  
+
+    <div class="container" id="signinForm">
+
+        <h1>Login</h1>
+
+        <form>
+
+            <label>Email :</label>
+            <input type="email" id="signinEmail" placeholder="Enter Email">
+            <small id="inputName"></small>
+            <label>Password :</label>
+            <input type="password" id="signinPass" placeholder="Enter Password">
+            <small id="inputPass"></small>
+            <input type="submit" value="Sign In" id="Login_button">
+
+            <div class="switch">
+                <span style="color: aliceblue;" >Don't have an account?</span>
+                <input type="button" value="Sign Up" id="signUP">
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <script src="/javascript/script.js"></script>
+
+</body>
+
+</html>

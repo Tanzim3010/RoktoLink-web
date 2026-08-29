@@ -1,0 +1,132 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,
+            #de7575,
+            #C1121F,
+            #d66972);
+    min-height: 100vh;
+    padding-top: 1px;
+}
+
+.container {
+    background: #650000;
+    width: 450px;
+    padding: 30px;
+    margin: 50px auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(192, 28, 28, 0.25);
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    color: #B11226;
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    color: #e8e2e2;
+    font-weight: bold;
+ margin-bottom: 8px;
+}
+
+input:hover{
+    transform: scaleY(1.1);
+}
+small {
+    display: block;
+    color: #444f14;
+    font-weight: bolder;
+    width: 200px;
+    margin: auto;
+    text-align: center;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: #C1121F;
+    box-shadow: 0 0 5px rgba(193, 18, 31, 0.3);
+}
+
+
+
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+input[type="number"]:hover {
+    border-color: #C1121F;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #B11226;
+    color: white;
+ border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 5px;
+ transition: 0.2s;
+}
+
+
+input[type="submit"]:hover {
+    background: #8B0000;
+    transform: scale(1.02);
+}
+
+
+
+.switch {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 14px;
+    color: #333;
+}
+
+
+.switch span {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+#signUP,
+#signIn {
+    width: auto;
+    height: auto;
+    padding: 8px 18px;
+    margin: 0;
+    background-color: #8B0000;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+#signUP:hover,
+#signIn:hover {
+    background-color: #B11226;
+    transform: scale(1.05);
+}
