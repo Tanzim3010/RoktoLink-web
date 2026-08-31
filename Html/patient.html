@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rokto Link - Patient Dashboard</title>
+
+    <link rel="stylesheet" href="/Css/style.css">
+
+</head>
+
+
+<body class="patient-page">
+
+
+         <!-- PATIENT DASHBOARD -->
+
+    <div class="dashboard">
+
+        <h1>
+            Welcome to Rokto Link 💙
+        </h1>
+
+        <p>
+            Create your patient profile so donors
+            can find you when blood is needed.
+        </p>
+
+        <button type="button" id="profile">
+
+            Create Patient Profile
+
+        </button>
+
+    </div>
+
+
+
+         <!-- PROFILE FORM + PROFILE CARD -->
+
+    <div class="profile-container" id="profileForm">
+
+
+             <!-- PATIENT FORM -->
+
+        <div class="form-section">
+
+            <h1>
+                Create Patient Profile
+            </h1>
+
+
+            <form id="createProfileForm">
+
+
+                     <!-- PROFILE PICTURE -->
+
+                <label for="profilePicture">
+
+                    Patient Picture
+
+                </label>
+
+
+                <div class="image-preview">
+
+                    <img id="previewImage" src="" alt="Patient Preview">
+
+                    <p id="imageText">
+
+                        No image selected
+
+                    </p>
+
+                </div>
+
+
+                <input type="file" id="profilePicture" name="profilePicture" accept="image/png, image/jpeg, image/jpg">
+
+
+
+                     <!-- FULL NAME -->
+
+                <label for="fullName">
+
+                    Full Name
+
+                </label>
+
+
+                <input type="text" id="fullName" name="fullName" placeholder="Enter patient's full name" required>
+
+
+
+                     <!-- BLOOD GROUP -->
+
+                <label for="bloodGroup">
+
+                    Blood Group
+
+                </label>
+
+
+                <select id="bloodGroup" name="bloodGroup" required>
+
+                    <option value="">
+
+                        Select Blood Group
+
+                    </option>
+
+                    <option value="A+">A+</option>
+
+                    <option value="A-">A-</option>
+
+                    <option value="B+">B+</option>
+
+                    <option value="B-">B-</option>
+
+                    <option value="AB+">AB+</option>
+
+                    <option value="AB-">AB-</option>
+
+                    <option value="O+">O+</option>
+
+                    <option value="O-">O-</option>
+
+                </select>
+
+
+
+                     <!-- PHONE -->
+
+                <label for="phone">
+
+                    Phone Number
+
+                </label>
+
+
+                <input type="tel" id="phone" name="phone" placeholder="01XXXXXXXXX" maxlength="11" pattern="01[0-9]{9}"
+                    required>
+
+
+
+                     <!-- EMAIL -->
+
+                <label for="profileEmail">
+
+                    Email
+
+                </label>
+
+
+                <input type="email" id="profileEmail" name="profileEmail" placeholder="Enter patient's email" required>
+
+
+
+                     <!-- DATE OF BIRTH -->
+
+                <label for="dob">
+
+                    Date of Birth
+
+                </label>
+
+
+                <input type="date" id="dob" name="dob" required>
+
+
+
+                     <!-- HOSPITAL -->
+
+                <label for="hospital">
+
+                    Hospital Name
+
+                </label>
+
+
+                <input type="text" id="hospital" name="hospital" placeholder="Enter hospital name" required>
+
+
+
+                     <!-- HOSPITAL ADDRESS -->
+
+                <label for="address">
+
+                    Hospital Address
+
+                </label>
+
+
+                <textarea id="address" name="address" placeholder="Enter hospital address" rows="4" required></textarea>
+
+
+
+                     <!-- BLOOD UNITS -->
+
+                <label for="bloodUnits">
+
+                    Required Blood Units
+
+                </label>
+
+
+                <input type="number" id="bloodUnits" name="bloodUnits" placeholder="Enter number of blood units" min="1"
+                    required>
+
+
+
+                     REQUIRED DATE
+
+                <label for="requiredDate">
+
+                    Blood Required Date
+
+                </label>
+
+
+                <input type="date" id="requiredDate" name="requiredDate" required>
+
+
+
+                     <!-- URGENCY -->
+
+                <label for="urgency">
+
+                    Urgency Level
+
+                </label>
+
+
+                <select id="urgency" name="urgency" required>
+
+                    <option value="">
+
+                        Select Urgency Level
+
+                    </option>
+
+                    <option value="Normal">
+
+                        Normal
+
+                    </option>
+
+                    <option value="Urgent">
+
+                        Urgent
+
+                    </option>
+
+                    <option value="Emergency">
+
+                        Emergency
+
+                    </option>
+
+                </select>
+
+
+
+                     <!-- MEDICAL INFORMATION -->
+
+                <label for="medicalInfo">
+
+                    Medical Information
+
+                </label>
+
+
+                <textarea id="medicalInfo" name="medicalInfo" placeholder="Enter relevant medical information"
+                    rows="4"></textarea>
+
+
+
+                     <!-- SUBMIT -->
+
+                <button type="submit" class="submit-button">
+
+                    Create Patient Profile
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+
+             <!-- PATIENT PROFILE CARD -->
+
+        <div class="profile-card" id="profileCard">
+
+
+            <!-- CARD HEADING -->
+
+            <div class="card-heading">
+
+                <span>
+                    PATIENT PROFILE
+                </span>
+
+            </div>
+
+
+
+            <!-- PROFILE IMAGE -->
+
+            <div class="default-profile-image" id="defaultProfileImage">
+
+                👤
+
+            </div>
+
+
+            <img id="cardImage" src="" alt="Patient Profile">
+
+
+
+            <!-- PATIENT NAME -->
+
+            <h2 id="cardName">
+
+                Patient Name
+
+            </h2>
+
+
+
+            <!-- BLOOD GROUP -->
+
+            <div class="blood-badge" id="cardBlood">
+
+                Blood Group
+
+            </div>
+
+
+
+                 <!-- PATIENT INFORMATION -->
+
+            <div class="profile-information">
+
+
+                <!-- PHONE -->
+
+                <p>
+
+                    <strong>
+                        📞 Phone:
+                    </strong>
+
+                    <span id="cardPhone"></span>
+
+                </p>
+
+
+
+                <!-- EMAIL -->
+
+                <p>
+
+                    <strong>
+                        ✉️ Email:
+                    </strong>
+
+                    <span id="cardEmail"></span>
+
+                </p>
+
+
+
+                <!-- DOB -->
+
+                <p>
+
+                    <strong>
+                        🎂 Date of Birth:
+                    </strong>
+
+                    <span id="cardDob"></span>
+
+                </p>
+
+
+
+                <!-- HOSPITAL -->
+
+                <p>
+
+                    <strong>
+                        🏥 Hospital:
+                    </strong>
+
+                    <span id="cardHospital"></span>
+
+                </p>
+
+
+
+                <!-- ADDRESS -->
+
+                <p>
+
+                    <strong>
+                        📍 Hospital Address:
+                    </strong>
+
+                    <span id="cardAddress"></span>
+
+                </p>
+
+
+
+                <!-- BLOOD UNITS -->
+
+                <p>
+
+                    <strong>
+                        🩸 Blood Units:
+                    </strong>
+
+                    <span id="cardBloodUnits"></span>
+
+                </p>
+
+
+
+                <!-- REQUIRED DATE -->
+
+                <p>
+
+                    <strong>
+                        📅 Required Date:
+                    </strong>
+
+                    <span id="cardRequiredDate"></span>
+
+                </p>
+
+
+
+                <!-- URGENCY -->
+
+                <p>
+
+                    <strong>
+                        🚨 Urgency:
+                    </strong>
+
+                    <span id="cardUrgency" class="availability-status">
+
+                    </span>
+
+                </p>
+
+
+
+                <!-- MEDICAL INFORMATION -->
+
+                <p>
+
+                    <strong>
+                        📝 Medical Information:
+                    </strong>
+
+                    <span id="cardMedicalInfo"></span>
+
+                </p>
+
+
+            </div>
+
+
+
+                 <!-- EDIT PROFILE -->
+
+            <button type="button" id="editProfile">
+
+                Edit Profile
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+         <!-- JAVASCRIPT -->
+
+    <script src="/javascript/patient.js"></script>
+
+</body>
+
+</html>

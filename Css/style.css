@@ -1,8 +1,10 @@
-/* =========================
+/* =====================================
    BASIC STYLE
-========================= */
+===================================== */
 
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -10,600 +12,1290 @@ body {
     margin: 0;
     min-height: 100vh;
     padding-top: 1px;
+
     font-family: Arial, sans-serif;
 
+    /* DONOR DEFAULT BACKGROUND */
     background: linear-gradient(135deg,
-            #da9f9f,
+            #eccfcf,
             #d9575f,
             #ddcdce);
 }
 
 
-/* =========================
+/* =====================================
    LOGIN AND SIGN-UP CONTAINER
-========================= */
+===================================== */
 
 .container {
     width: 450px;
+
     margin: 50px auto;
+
     padding: 30px;
 
     background: #650000;
+
     border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(192, 28, 28, 0.25);
+
+    box-shadow:
+        0 8px 25px rgba(192, 28, 28, 0.25);
 
     transform: translateY(80px);
 }
 
+
 .container h1 {
     margin-bottom: 30px;
+
     color: #e8dfdf;
+
     text-align: center;
 }
+
 
 .container label {
     display: block;
+
     margin-bottom: 8px;
 
     color: #e8e2e2;
+
     font-weight: bold;
 }
 
+
 .container small {
     display: block;
+
     width: 200px;
+
     margin: auto;
 
     color: #fefffa;
+
     font-weight: bolder;
+
     text-align: center;
 }
 
 
-/* Login and Sign-up Inputs */
+/* =====================================
+   LOGIN AND SIGN-UP INPUTS
+===================================== */
 
 .container input[type="text"],
 .container input[type="email"],
 .container input[type="password"],
 .container input[type="number"] {
+
     width: 100%;
+
     margin-bottom: 18px;
+
     padding: 12px;
 
     border: 1px solid #cccccc;
+
     border-radius: 6px;
 
     font-size: 15px;
+
     transition: 0.2s;
 }
+
 
 .container input[type="text"]:focus,
 .container input[type="email"]:focus,
 .container input[type="password"]:focus,
 .container input[type="number"]:focus {
+
     outline: none;
+
     border-color: #c1121f;
-    box-shadow: 0 0 5px rgba(193, 18, 31, 0.3);
+
+    box-shadow:
+        0 0 5px rgba(193, 18, 31, 0.3);
 }
+
 
 .container input[type="text"]:hover,
 .container input[type="email"]:hover,
 .container input[type="password"]:hover,
 .container input[type="number"]:hover {
+
     border-color: #c1121f;
+
     transform: scaleY(1.03);
 }
 
 
-/* Login and Sign-up Submit Button */
+/* =====================================
+   LOGIN AND SIGN-UP SUBMIT BUTTON
+===================================== */
 
 .container input[type="submit"] {
+
     width: 100%;
+
     margin-top: 5px;
+
     padding: 12px;
 
     color: white;
+
     background: #b11226;
 
     border: none;
+
     border-radius: 6px;
 
     font-size: 16px;
+
     font-weight: bold;
+
     cursor: pointer;
+
     transition: 0.2s;
 }
 
+
 .container input[type="submit"]:hover {
+
     background: #8b0000;
+
     transform: scale(1.02);
 }
 
 
-/* Login and Sign-up Switch */
+/* =====================================
+   LOGIN AND SIGN-UP SWITCH
+===================================== */
 
 .switch {
+
     margin-top: 25px;
+
     color: #333333;
+
     font-size: 14px;
+
     text-align: center;
 }
 
+
 .switch span {
+
     margin-right: 8px;
+
     font-weight: bold;
 }
+
 
 #signUP,
 #signIn {
+
     width: auto;
+
     height: auto;
+
     margin: 0;
+
     padding: 8px 18px;
 
     color: white;
+
     background-color: #8b0000;
 
     border: none;
+
     border-radius: 20px;
 
     font-size: 14px;
+
     font-weight: bold;
+
     cursor: pointer;
+
     transition: 0.2s;
 }
 
+
 #signUP:hover,
 #signIn:hover {
+
     background-color: #b11226;
+
     transform: scale(1.05);
 }
 
 
-/* =========================
+/* =====================================
    DASHBOARD
-========================= */
+   DEFAULT = DONOR RED THEME
+===================================== */
 
 .dashboard {
+
     width: 90%;
+
     max-width: 850px;
+
     margin: 45px auto 35px;
+
     padding: 40px 25px;
 
     background-color: #ffffff;
+
     border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(101, 0, 0, 0.22);
+
+    box-shadow:
+        0 8px 25px rgba(101, 0, 0, 0.22);
 
     text-align: center;
 }
 
+
 .dashboard h1 {
+
     margin-top: 0;
+
     margin-bottom: 15px;
 
     color: #c1121f;
+
     font-size: 35px;
 }
 
+
 .dashboard p {
+
     max-width: 550px;
+
     margin: 0 auto 25px;
 
     color: #555555;
+
     font-size: 17px;
+
     line-height: 1.6;
 }
 
 
-/* Dashboard Create Profile Button */
+/* =====================================
+   DASHBOARD CREATE PROFILE BUTTON
+===================================== */
 
 #profile {
+
     padding: 13px 25px;
 
     color: #ffffff;
+
     background-color: #d62828;
 
     border: none;
+
     border-radius: 8px;
 
     font-size: 16px;
+
     font-weight: bold;
+
     cursor: pointer;
+
     transition: 0.3s;
 }
 
+
 #profile:hover {
+
     background-color: #a4161a;
+
     transform: translateY(-2px);
 }
 
 
-/* =========================
+/* =====================================
    PROFILE MAIN CONTAINER
-========================= */
+===================================== */
 
 .profile-container {
+
     display: none;
+
     width: 95%;
+
     max-width: 1050px;
+
     margin: 0 auto 50px;
 
     align-items: flex-start;
+
     justify-content: center;
+
     gap: 30px;
 }
 
 
-/* =========================
+/* =====================================
    PROFILE FORM SECTION
-========================= */
+===================================== */
 
 .form-section {
+
     width: 100%;
+
     max-width: 560px;
+
     padding: 30px;
 
     background-color: #ffffff;
+
     border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(101, 0, 0, 0.22);
+
+    box-shadow:
+        0 8px 25px rgba(101, 0, 0, 0.22);
 }
 
+
 .form-section h1 {
+
     margin-top: 0;
+
     margin-bottom: 25px;
 
     color: #c1121f;
+
     text-align: center;
 }
 
 
-/* Profile Form */
+/* =====================================
+   PROFILE FORM
+===================================== */
 
 #createProfileForm {
+
     display: flex;
+
     flex-direction: column;
 }
 
+
 #createProfileForm label {
+
     display: block;
+
     margin-top: 15px;
+
     margin-bottom: 7px;
 
     color: #333333;
+
     font-size: 15px;
+
     font-weight: bold;
 }
+
+
+/* =====================================
+   PROFILE INPUTS
+===================================== */
 
 #createProfileForm input,
 #createProfileForm select,
 #createProfileForm textarea {
+
     width: 100%;
+
     padding: 12px;
 
     color: #333333;
+
     background-color: #ffffff;
 
     border: 1px solid #cccccc;
+
     border-radius: 7px;
+
     outline: none;
 
     font-family: Arial, Helvetica, sans-serif;
+
     font-size: 15px;
 
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition:
+        border-color 0.3s,
+        box-shadow 0.3s;
 }
+
 
 #createProfileForm input:focus,
 #createProfileForm select:focus,
 #createProfileForm textarea:focus {
+
     border-color: #d62828;
-    box-shadow: 0 0 0 3px rgba(214, 40, 40, 0.12);
+
+    box-shadow:
+        0 0 0 3px rgba(214, 40, 40, 0.12);
 }
+
 
 #createProfileForm input:hover,
 #createProfileForm select:hover,
 #createProfileForm textarea:hover {
+
     border-color: #d62828;
 }
 
+
 #createProfileForm textarea {
+
     resize: vertical;
+
     min-height: 100px;
 }
 
+
 #createProfileForm input[type="file"] {
+
     cursor: pointer;
 }
 
 
-/* File Choose Button */
+/* =====================================
+   FILE CHOOSE BUTTON
+===================================== */
 
 #createProfileForm input[type="file"]::file-selector-button {
+
     margin-right: 10px;
+
     padding: 9px 14px;
 
     color: #ffffff;
+
     background-color: #d62828;
 
     border: none;
+
     border-radius: 6px;
 
     font-weight: bold;
+
     cursor: pointer;
 }
 
+
 #createProfileForm input[type="file"]::file-selector-button:hover {
+
     background-color: #a4161a;
 }
 
 
-/* =========================
+/* =====================================
    IMAGE PREVIEW
-========================= */
+===================================== */
 
 .image-preview {
+
     position: relative;
 
     display: flex;
+
     width: 150px;
+
     height: 150px;
+
     margin: 5px auto 15px;
 
     align-items: center;
+
     justify-content: center;
 
     background-color: #f5f5f5;
+
     border: 2px dashed #d62828;
+
     border-radius: 50%;
 
     overflow: hidden;
 }
 
+
 #previewImage {
+
     display: none;
+
     width: 100%;
+
     height: 100%;
 
     object-fit: cover;
+
     border-radius: 50%;
 }
 
+
 #imageText {
+
     margin: 0;
+
     padding: 15px;
 
     color: #888888;
+
     font-size: 13px;
+
     text-align: center;
 }
 
 
-/* =========================
+/* =====================================
    PROFILE SUBMIT BUTTON
-========================= */
+===================================== */
 
 .submit-button {
+
     width: 100%;
+
     margin-top: 25px;
+
     padding: 13px;
 
     color: #ffffff;
+
     background-color: #d62828;
 
     border: none;
+
     border-radius: 8px;
 
     font-size: 16px;
+
     font-weight: bold;
+
     cursor: pointer;
+
     transition: 0.3s;
 }
 
+
 .submit-button:hover {
+
     background-color: #a4161a;
+
     transform: scale(1.01);
 }
 
 
-/* =========================
+/* =====================================
    PROFILE CARD
-========================= */
+===================================== */
 
 .profile-card {
+
     display: none;
+
     width: 100%;
+
     max-width: 330px;
+
     padding: 25px;
 
     background-color: #ffffff;
+
     border: 2px solid #d62828;
+
     border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(101, 0, 0, 0.25);
+
+    box-shadow:
+        0 8px 25px rgba(101, 0, 0, 0.25);
 }
 
 
-/* Profile Card Heading */
+/* =====================================
+   PROFILE CARD HEADING
+===================================== */
 
 .card-heading {
+
     margin: -25px -25px 20px;
+
     padding: 14px;
 
     color: #ffffff;
+
     background-color: #d62828;
 
     border-radius: 13px 13px 0 0;
 
     font-size: 14px;
+
     font-weight: bold;
+
     letter-spacing: 2px;
+
     text-align: center;
 }
 
 
-/* Selected Profile Image */
+/* =====================================
+   SELECTED PROFILE IMAGE
+===================================== */
 
 #cardImage {
+
     display: none;
+
     width: 120px;
+
     height: 120px;
+
     margin: 0 auto 15px;
 
     object-fit: cover;
 
     border: 4px solid #d62828;
+
     border-radius: 50%;
 }
 
 
-/* Default Profile Circle */
+/* =====================================
+   DEFAULT PROFILE CIRCLE
+===================================== */
 
 .default-profile-image {
+
     display: flex;
+
     width: 120px;
+
     height: 120px;
+
     margin: 0 auto 15px;
 
     align-items: center;
+
     justify-content: center;
 
     background-color: #ffe1e1;
+
     border: 4px solid #d62828;
+
     border-radius: 50%;
 
     font-size: 55px;
 }
 
 
-/* Profile Card Name */
+/* =====================================
+   PROFILE CARD NAME
+===================================== */
 
 .profile-card h2 {
+
     margin-top: 0;
+
     margin-bottom: 10px;
 
     color: #333333;
+
     text-align: center;
+
     overflow-wrap: anywhere;
 }
 
 
-/* Blood Group Badge */
+/* =====================================
+   BLOOD GROUP BADGE
+===================================== */
 
 .blood-badge {
+
     width: fit-content;
+
     margin: 0 auto 20px;
+
     padding: 8px 18px;
 
     color: #ffffff;
+
     background-color: #d62828;
 
     border-radius: 25px;
 
     font-size: 18px;
+
     font-weight: bold;
 }
 
 
-/* Profile Information */
+/* =====================================
+   PROFILE INFORMATION
+===================================== */
 
 .profile-information {
+
     padding-top: 10px;
+
     border-top: 1px solid #eeeeee;
 }
 
+
 .profile-information p {
+
     margin: 12px 0;
 
     color: #555555;
+
     font-size: 14px;
+
     line-height: 1.5;
 
     overflow-wrap: anywhere;
 }
 
+
 .profile-information strong {
+
     color: #222222;
 }
 
 
-/* Availability Status */
+/* =====================================
+   DONOR AVAILABILITY
+===================================== */
 
 .availability-status {
+
     font-weight: bold;
 }
 
+
 .available {
+
     color: #138a36;
 }
 
+
 .not-available {
+
     color: #d62828;
 }
 
 
-/* Edit Profile Button */
+/* =====================================
+   EDIT PROFILE BUTTON
+===================================== */
 
 #editProfile {
+
     width: 100%;
+
     margin-top: 15px;
+
     padding: 11px;
 
     color: #d62828;
+
     background-color: #ffffff;
 
     border: 2px solid #d62828;
+
     border-radius: 7px;
 
     font-weight: bold;
+
     cursor: pointer;
+
     transition: 0.3s;
 }
 
+
 #editProfile:hover {
+
     color: #ffffff;
+
     background-color: #d62828;
 }
 
 
-/* =========================
+/* =========================================================
+   =========================================================
+                  PATIENT BLUE THEME
+   =========================================================
+   Only works when:
+   <body class="patient-page">
+   ========================================================= */
+
+
+/* =====================================
+   PATIENT BODY
+===================================== */
+
+body.patient-page {
+
+    background: linear-gradient(135deg,
+            #dbeafe,
+            #93c5fd,
+            #eff6ff);
+}
+
+
+/* =====================================
+   PATIENT DASHBOARD
+===================================== */
+
+.patient-page .dashboard {
+
+    border-top: 5px solid #2563eb;
+
+    box-shadow:
+        0 8px 25px rgba(37, 99, 235, 0.25);
+}
+
+
+.patient-page .dashboard h1 {
+
+    color: #1d4ed8;
+}
+
+
+.patient-page .dashboard p {
+
+    color: #475569;
+}
+
+
+/* =====================================
+   PATIENT CREATE PROFILE BUTTON
+===================================== */
+
+.patient-page #profile {
+
+    background: linear-gradient(135deg,
+            #2563eb,
+            #1d4ed8);
+
+    box-shadow:
+        0 5px 15px rgba(37, 99, 235, 0.20);
+}
+
+
+.patient-page #profile:hover {
+
+    background: linear-gradient(135deg,
+            #1d4ed8,
+            #1e40af);
+
+    box-shadow:
+        0 7px 18px rgba(37, 99, 235, 0.30);
+}
+
+
+/* =====================================
+   PATIENT PROFILE CONTAINER
+===================================== */
+
+.patient-page .profile-container {
+
+    gap: 35px;
+}
+
+
+/* =====================================
+   PATIENT FORM SECTION
+===================================== */
+
+.patient-page .form-section {
+
+    border-top: 5px solid #2563eb;
+
+    box-shadow:
+        0 8px 25px rgba(37, 99, 235, 0.22);
+}
+
+
+.patient-page .form-section h1 {
+
+    color: #1d4ed8;
+}
+
+
+/* =====================================
+   PATIENT FORM LABELS
+===================================== */
+
+.patient-page #createProfileForm label {
+
+    color: #1e3a8a;
+}
+
+
+/* =====================================
+   PATIENT INPUTS
+===================================== */
+
+.patient-page #createProfileForm input,
+.patient-page #createProfileForm select,
+.patient-page #createProfileForm textarea {
+
+    color: #334155;
+
+    background-color: #f8fbff;
+
+    border-color: #bfdbfe;
+}
+
+
+.patient-page #createProfileForm input:focus,
+.patient-page #createProfileForm select:focus,
+.patient-page #createProfileForm textarea:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+.patient-page #createProfileForm input:hover,
+.patient-page #createProfileForm select:hover,
+.patient-page #createProfileForm textarea:hover {
+
+    border-color: #2563eb;
+}
+
+
+/* =====================================
+   PATIENT FILE BUTTON
+===================================== */
+
+.patient-page #createProfileForm input[type="file"]::file-selector-button {
+
+    background-color: #2563eb;
+}
+
+
+.patient-page #createProfileForm input[type="file"]::file-selector-button:hover {
+
+    background-color: #1d4ed8;
+}
+
+
+/* =====================================
+   PATIENT IMAGE PREVIEW
+===================================== */
+
+.patient-page .image-preview {
+
+    background-color: #eff6ff;
+
+    border-color: #2563eb;
+}
+
+
+.patient-page #previewImage {
+
+    border-color: #2563eb;
+}
+
+
+/* =====================================
+   PATIENT SUBMIT BUTTON
+===================================== */
+
+.patient-page .submit-button {
+
+    background: linear-gradient(135deg,
+            #2563eb,
+            #1d4ed8);
+}
+
+
+.patient-page .submit-button:hover {
+
+    background: linear-gradient(135deg,
+            #1d4ed8,
+            #1e40af);
+
+    box-shadow:
+        0 6px 15px rgba(37, 99, 235, 0.30);
+}
+
+
+/* =====================================
+   PATIENT PROFILE CARD
+===================================== */
+
+.patient-page .profile-card {
+
+    border: 2px solid #2563eb;
+
+    box-shadow:
+        0 8px 25px rgba(37, 99, 235, 0.25);
+}
+
+
+/* =====================================
+   PATIENT CARD HEADING
+===================================== */
+
+.patient-page .card-heading {
+
+    background: linear-gradient(135deg,
+            #2563eb,
+            #1d4ed8);
+}
+
+
+/* =====================================
+   PATIENT CARD IMAGE
+===================================== */
+
+.patient-page #cardImage {
+
+    border-color: #2563eb;
+}
+
+
+.patient-page .default-profile-image {
+
+    background-color: #dbeafe;
+
+    border-color: #2563eb;
+}
+
+
+/* =====================================
+   PATIENT CARD NAME
+===================================== */
+
+.patient-page .profile-card h2 {
+
+    color: #1e3a8a;
+}
+
+
+/* =====================================
+   PATIENT BLOOD GROUP
+===================================== */
+
+.patient-page .blood-badge {
+
+    background: linear-gradient(135deg,
+            #2563eb,
+            #1d4ed8);
+
+    box-shadow:
+        0 4px 10px rgba(37, 99, 235, 0.20);
+}
+
+
+/* =====================================
+   PATIENT INFORMATION
+===================================== */
+
+.patient-page .profile-information {
+
+    padding: 15px;
+
+    background-color: #eff6ff;
+
+    border-top: none;
+
+    border-left: 4px solid #2563eb;
+
+    border-radius: 8px;
+}
+
+
+.patient-page .profile-information p {
+
+    color: #475569;
+}
+
+
+.patient-page .profile-information strong {
+
+    color: #1e3a8a;
+}
+
+
+/* =====================================
+   PATIENT URGENCY
+===================================== */
+
+.patient-page #cardUrgency {
+
+    font-weight: bold;
+}
+
+
+/* Emergency */
+
+.patient-page .patient-emergency {
+
+    color: #dc2626;
+}
+
+
+/* Urgent */
+
+.patient-page .patient-urgent {
+
+    color: #ea580c;
+}
+
+
+/* Normal */
+
+.patient-page .patient-normal {
+
+    color: #15803d;
+}
+
+
+/* =====================================
+   PATIENT EDIT BUTTON
+===================================== */
+
+.patient-page #editProfile {
+
+    color: #2563eb;
+
+    background-color: #ffffff;
+
+    border-color: #2563eb;
+}
+
+
+.patient-page #editProfile:hover {
+
+    color: #ffffff;
+
+    background-color: #2563eb;
+
+    box-shadow:
+        0 5px 12px rgba(37, 99, 235, 0.20);
+}
+
+
+/* =========================================================
    RESPONSIVE DESIGN
-========================= */
+========================================================= */
 
 @media screen and (max-width: 850px) {
+
     body {
+
         padding: 20px 10px;
     }
 
+
     .container {
+
         width: 95%;
+
         margin: 20px auto;
+
         transform: translateY(20px);
     }
 
+
     .dashboard {
+
         width: 100%;
+
         margin-top: 10px;
     }
 
+
     .dashboard h1 {
+
         font-size: 27px;
     }
 
+
     .profile-container {
+
         width: 100%;
+
         flex-direction: column;
+
         align-items: center;
     }
 
+
     .form-section {
+
         max-width: 600px;
+
         padding: 22px;
     }
 
+
     .profile-card {
+
         max-width: 500px;
     }
 }
-#admin_welcome{
-    text-align: center;
-    font-weight: 800;
+
+
+@media screen and (max-width: 500px) {
+
+    .container {
+
+        padding: 20px;
+    }
+
+
+    .dashboard {
+
+        padding: 30px 15px;
+    }
+
+
+    .dashboard h1 {
+
+        font-size: 24px;
+    }
+
+
+    .form-section {
+
+        padding: 18px;
+    }
+
+
+    .profile-card {
+
+        padding: 20px;
+    }
+
+
+    .card-heading {
+
+        margin: -20px -20px 20px;
+    }
+
+
+    .image-preview {
+
+        width: 130px;
+
+        height: 130px;
+    }
+
+
+    #cardImage,
+    .default-profile-image {
+
+        width: 110px;
+
+        height: 110px;
+    }
 }
