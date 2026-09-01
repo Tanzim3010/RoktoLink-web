@@ -84,6 +84,14 @@ if (
             return;
         }
 
+        if (nid.value.trim().length !== 10) {
+            document.getElementById("nidError").innerText =
+                "NID must be exactly 10 digits.";
+
+            nid.focus();
+            return;
+        }
+
         if (signupPassword.value.trim() === "") {
             document.getElementById("passError").innerText =
                 "Please fill password.";
@@ -355,6 +363,21 @@ function formatDate(dateValue) {
     return parts[2] + "/" + parts[1] + "/" + parts[0];
 }
 
+
+/* =====================================
+   LOGOUT FUNCTIONALITY
+===================================== */
+
+const logoutBtn = document.getElementById("logoutBtn");
+
+if (logoutBtn) {
+    logoutBtn.onclick = function () {
+        if (confirm("Are you sure you want to logout?")) {
+            alert("Logged out successfully!");
+            window.location.href = "../Html/index.html";
+        }
+    };
+}
 
 
 

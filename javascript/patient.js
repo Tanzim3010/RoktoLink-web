@@ -125,3 +125,18 @@ document.addEventListener("DOMContentLoaded", () => {
         formSection.scrollIntoView({ behavior: "smooth" });
     });
 });
+
+/* =====================================
+   LOGOUT FUNCTIONALITY
+===================================== */
+
+const logoutBtn = document.getElementById("logoutBtn");
+
+if (logoutBtn) {
+    logoutBtn.onclick = function () {
+        if (confirm("Are you sure you want to logout?")) {
+            alert("Logged out successfully!");
+            window.location.href = "../Html/index.html";
+        }
+    };
+}

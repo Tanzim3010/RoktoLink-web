@@ -131,6 +131,25 @@ body {
 
 
 /* =====================================
+   REMOVE NUMBER INPUT SPINNER ARROWS
+===================================== */
+
+.container input[type="number"]::-webkit-outer-spin-button,
+.container input[type="number"]::-webkit-inner-spin-button {
+
+    -webkit-appearance: none;
+
+    margin: 0;
+}
+
+
+.container input[type="number"] {
+
+    -moz-appearance: textfield;
+}
+
+
+/* =====================================
    LOGIN AND SIGN-UP SUBMIT BUTTON
 ===================================== */
 
@@ -227,6 +246,90 @@ body {
     background-color: #b11226;
 
     transform: scale(1.05);
+}
+
+
+/* =====================================
+   MODE SWITCHER BUTTON
+===================================== */
+
+.mode-switcher {
+
+    margin-bottom: 20px;
+
+    text-align: right;
+}
+
+
+.switch-mode-btn {
+
+    display: inline-block;
+
+    padding: 10px 20px;
+
+    color: #ffffff;
+
+    background-color: #666666;
+
+    border: none;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.switch-mode-btn:hover {
+
+    background-color: #444444;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================
+   LOGOUT BUTTON
+===================================== */
+
+.logout-btn {
+
+    display: inline-block;
+
+    margin-right: 12px;
+
+    padding: 10px 20px;
+
+    color: #ffffff;
+
+    background-color: #dc2626;
+
+    border: none;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.logout-btn:hover {
+
+    background-color: #991b1b;
+
+    transform: translateY(-2px);
 }
 
 
@@ -330,7 +433,7 @@ body {
 
     margin: 0 auto 50px;
 
-    align-items: flex-start;
+    align-items: center;
 
     justify-content: center;
 
@@ -871,6 +974,34 @@ body.patient-page {
 
 
 /* =====================================
+   PATIENT MODE SWITCHER
+===================================== */
+
+.patient-page .switch-mode-btn {
+
+    background-color: #1e40af;
+}
+
+
+.patient-page .switch-mode-btn:hover {
+
+    background-color: #1e3a8a;
+}
+
+
+.patient-page .logout-btn {
+
+    background-color: #dc2626;
+}
+
+
+.patient-page .logout-btn:hover {
+
+    background-color: #991b1b;
+}
+
+
+/* =====================================
    PATIENT CREATE PROFILE BUTTON
 ===================================== */
 
@@ -911,6 +1042,8 @@ body.patient-page {
 ===================================== */
 
 .patient-page .form-section {
+
+    margin: 0 auto;
 
     border-top: 5px solid #2563eb;
 
