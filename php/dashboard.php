@@ -1,3 +1,29 @@
+<?php
+session_start();
+require_once '../php/db_connect.php';
+
+// If user isn't logged in, redirect to login page
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../Html/index.html");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+
+// Check if donor profile already exists
+$stmt = $conn->prepare("SELECT id FROM donor_profiles WHERE user_id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Returning user with existing profile -> skip to requests page
+if ($result->num_rows > 0) {
+    header("Location: requests.php");
+    exit();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +34,7 @@
 
     <title>Rokto Link - Dashboard</title>
 
-    <link rel="stylesheet" href="/Css/style.css">
+    <link rel="stylesheet" href="../Css/style.css">
 </head>
 
 <body>
@@ -43,7 +69,7 @@
 
             <h1>Create Your Profile</h1>
 
-            <form id="createProfileForm">
+            <<form id="createProfileForm" action="../php/process_profile.php" method="POST" enctype="multipart/form-data">
 
                 <!-- Profile Picture -->
                 <label for="profilePicture">
@@ -242,7 +268,7 @@
     </div>
 
 
-    <script src="/javascript/script.js"></script>
+    <script src="../javascript/script.js"></script>
 </body>
 
 </html>

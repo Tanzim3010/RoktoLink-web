@@ -1,3 +1,70 @@
+<?php
+session_start();
+require_once 'db_connect.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../Html/index.html");
+    exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user_id = $_SESSION['user_id'];
+    
+    // Grab all form fields
+    $full_name = trim($_POST['fullName']);
+    $blood_group = trim($_POST['bloodGroup']);
+    $phone = trim($_POST['phone']);
+    $email = trim($_POST['profileEmail']);
+    $dob = $_POST['dob'];
+    $hospital = trim($_POST['hospital']);
+    $address = trim($_POST['address']);
+    $blood_units = (int)$_POST['bloodUnits'];
+    $required_date = $_POST['requiredDate'];
+    $urgency = $_POST['urgency'];
+    $medical_info = trim($_POST['medicalInfo']);
+
+    // --- IMAGE UPLOAD LOGIC ---
+    $image_path = NULL; 
+    
+    if (isset($_FILES['profilePicture']) && $_FILES['profilePicture']['error'] === UPLOAD_ERR_OK) {
+        $file_tmp = $_FILES['profilePicture']['tmp_name'];
+        $file_name = $_FILES['profilePicture']['name'];
+        
+        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+        $allowed_ext = array("jpg", "jpeg", "png");
+        
+        if (in_array($file_ext, $allowed_ext)) {
+            $new_file_name = "patient_" . $user_id . "_" . time() . "." . $file_ext;
+            $destination = "../uploads/" . $new_file_name;
+            
+            if (move_uploaded_file($file_tmp, $destination)) {
+                $image_path = $new_file_name;
+            }
+        }
+    }
+
+    // --- DATABASE INSERT ---
+    $stmt = $conn->prepare("INSERT INTO patient_profiles (user_id, full_name, profile_image, blood_group, phone, email, dob, hospital, address, blood_units, required_date, urgency, medical_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    
+    $stmt->bind_param("isssssssssiss", $user_id, $full_name, $image_path, $blood_group, $phone, $email, $dob, $hospital, $address, $blood_units, $required_date, $urgency, $medical_info);
+
+    if ($stmt->execute()) {
+        // Redirect to the page where patients can see donors
+        header("Location: ../Html/donors.php"); 
+        exit();
+    } else {
+        echo "Error saving patient profile: " . $stmt->error;
+    }
+}
+?>
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +76,7 @@
 
     <title>Rokto Link - Patient Dashboard</title>
 
-    <link rel="stylesheet" href="/Css/style.css">
+    <link rel="stylesheet" href="../Css/style.css">
 
 </head>
 
@@ -501,7 +568,7 @@
 
          <!-- JAVASCRIPT -->
 
-    <script src="/javascript/patient.js"></script>
+    <script src="../javascript/patient.js"></script>
 
 </body>
 
