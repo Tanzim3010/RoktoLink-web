@@ -22,8 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("isssssss", $user_id, $full_name, $blood_group, $phone, $dob, $address, $last_donation, $availability);
 
     if ($stmt->execute()) {
-        // Successfully created profile -> Redirect to requests page
-        header("Location: ../Html/requests.php");
+        header("Location: request.php");
         exit();
     } else {
         echo "Error saving profile: " . $stmt->error;

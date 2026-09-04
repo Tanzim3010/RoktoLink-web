@@ -1,16 +1,35 @@
 <?php
+// Turn on error reporting for debugging
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 require_once 'db_connect.php';
 
+// Kick out unauthenticated users
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../Html/index.html");
     exit();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user_id = $_SESSION['user_id'];
+$user_id = $_SESSION['user_id'];
+$has_profile = false;
+$profile_data = [];
+
+// 1. Check if patient profile already exists and fetch the data
+$stmt = $conn->prepare("SELECT * FROM patient_profiles WHERE user_id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $has_profile = true;
+    $profile_data = $result->fetch_assoc(); // Store all profile info in this array
+}
+
+// 2. Form processing (Only runs if they submit the form)
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !$has_profile) {
     
-    // Grab all form fields
     $full_name = trim($_POST['fullName']);
     $blood_group = trim($_POST['bloodGroup']);
     $phone = trim($_POST['phone']);
@@ -23,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $urgency = $_POST['urgency'];
     $medical_info = trim($_POST['medicalInfo']);
 
-    // --- IMAGE UPLOAD LOGIC ---
     $image_path = NULL; 
     
     if (isset($_FILES['profilePicture']) && $_FILES['profilePicture']['error'] === UPLOAD_ERR_OK) {
@@ -43,533 +61,183 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // --- DATABASE INSERT ---
-    $stmt = $conn->prepare("INSERT INTO patient_profiles (user_id, full_name, profile_image, blood_group, phone, email, dob, hospital, address, blood_units, required_date, urgency, medical_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $insert_stmt = $conn->prepare("INSERT INTO patient_profiles (user_id, full_name, profile_image, blood_group, phone, email, dob, hospital, address, blood_units, required_date, urgency, medical_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     
-    $stmt->bind_param("isssssssssiss", $user_id, $full_name, $image_path, $blood_group, $phone, $email, $dob, $hospital, $address, $blood_units, $required_date, $urgency, $medical_info);
+    $insert_stmt->bind_param("issssssssisss", $user_id, $full_name, $image_path, $blood_group, $phone, $email, $dob, $hospital, $address, $blood_units, $required_date, $urgency, $medical_info);
 
-    if ($stmt->execute()) {
-        // Redirect to the page where patients can see donors
-        header("Location: ../Html/donors.php"); 
+    if ($insert_stmt->execute()) {
+        header("Location: donors.php"); 
         exit();
     } else {
-        echo "Error saving patient profile: " . $stmt->error;
+        echo "Error saving patient profile: " . $insert_stmt->error;
     }
 }
 ?>
 
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Rokto Link - Patient Dashboard</title>
-
     <link rel="stylesheet" href="../Css/style.css">
-
 </head>
-
-
 <body class="patient-page">
 
-
-         <!-- PATIENT DASHBOARD -->
-
+    <!-- PATIENT DASHBOARD -->
     <div class="dashboard">
-
         <div class="mode-switcher">
             <button type="button" id="logoutBtn" class="logout-btn">Logout</button>
-            <a href="dashboard.html" class="switch-mode-btn">Switch to Donor Mode</a>
+            <a href="dashboard.php" class="switch-mode-btn">Switch to Donor Mode</a>
         </div>
 
-        <h1>
-            Welcome to Rokto Link 💙
-        </h1>
-
-        <p>
-            Create your patient profile so donors
-            can find you when blood is needed.
-        </p>
-
-        <button type="button" id="profile">
-
-            Create Patient Profile
-
-        </button>
-
+        <?php if ($has_profile): ?>
+            <!-- Header for users who HAVE a profile -->
+            <h1>Your Patient Profile 💙</h1>
+            <p>Your request for blood is active. Donors can currently see your profile.</p>
+            <a href="donors.php" style="display:inline-block; padding:13px 25px; color:#fff; background-color:#2563eb; border-radius:8px; text-decoration:none; font-weight:bold;">
+                Search Available Donors
+            </a>
+        <?php else: ?>
+            <!-- Header for users who DO NOT have a profile -->
+            <h1>Welcome to Rokto Link 💙</h1>
+            <p>Create your patient profile so donors can find you when blood is needed.</p>
+        <?php endif; ?>
     </div>
 
+    <!-- MAIN CONTAINER (Forced to display via PHP style tag) -->
+    <div class="profile-container" id="profileForm" style="display: flex;">
 
-
-         <!-- PROFILE FORM + PROFILE CARD -->
-
-    <div class="profile-container" id="profileForm">
-
-
-             <!-- PATIENT FORM -->
-
+        <?php if (!$has_profile): ?>
+        
+        <!-- ============================================== -->
+        <!-- VIEW 1: THE REGISTRATION FORM (Only shows if no profile) -->
+        <!-- ============================================== -->
         <div class="form-section">
+            <h1>Create Patient Profile</h1>
+            <form id="createProfileForm" action="patient.php" method="POST" enctype="multipart/form-data">
 
-            <h1>
-                Create Patient Profile
-            </h1>
-
-
-            <form id="createProfileForm">
-
-
-                     <!-- PROFILE PICTURE -->
-
-                <label for="profilePicture">
-
-                    Patient Picture
-
-                </label>
-
-
+                <label for="profilePicture">Patient Picture</label>
                 <div class="image-preview">
-
                     <img id="previewImage" src="" alt="Patient Preview">
-
-                    <p id="imageText">
-
-                        No image selected
-
-                    </p>
-
+                    <p id="imageText">No image selected</p>
                 </div>
-
-
                 <input type="file" id="profilePicture" name="profilePicture" accept="image/png, image/jpeg, image/jpg">
 
-
-
-                     <!-- FULL NAME -->
-
-                <label for="fullName">
-
-                    Full Name
-
-                </label>
-
-
+                <label for="fullName">Full Name</label>
                 <input type="text" id="fullName" name="fullName" placeholder="Enter patient's full name" required>
 
-
-
-                     <!-- BLOOD GROUP -->
-
-                <label for="bloodGroup">
-
-                    Blood Group
-
-                </label>
-
-
+                <label for="bloodGroup">Blood Group</label>
                 <select id="bloodGroup" name="bloodGroup" required>
-
-                    <option value="">
-
-                        Select Blood Group
-
-                    </option>
-
+                    <option value="">Select Blood Group</option>
                     <option value="A+">A+</option>
-
                     <option value="A-">A-</option>
-
                     <option value="B+">B+</option>
-
                     <option value="B-">B-</option>
-
                     <option value="AB+">AB+</option>
-
                     <option value="AB-">AB-</option>
-
                     <option value="O+">O+</option>
-
                     <option value="O-">O-</option>
-
                 </select>
 
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="01XXXXXXXXX" maxlength="11" pattern="01[0-9]{9}" required>
 
-
-                     <!-- PHONE -->
-
-                <label for="phone">
-
-                    Phone Number
-
-                </label>
-
-
-                <input type="tel" id="phone" name="phone" placeholder="01XXXXXXXXX" maxlength="11" pattern="01[0-9]{9}"
-                    required>
-
-
-
-                     <!-- EMAIL -->
-
-                <label for="profileEmail">
-
-                    Email
-
-                </label>
-
-
+                <label for="profileEmail">Email</label>
                 <input type="email" id="profileEmail" name="profileEmail" placeholder="Enter patient's email" required>
 
-
-
-                     <!-- DATE OF BIRTH -->
-
-                <label for="dob">
-
-                    Date of Birth
-
-                </label>
-
-
+                <label for="dob">Date of Birth</label>
                 <input type="date" id="dob" name="dob" required>
 
-
-
-                     <!-- HOSPITAL -->
-
-                <label for="hospital">
-
-                    Hospital Name
-
-                </label>
-
-
+                <label for="hospital">Hospital Name</label>
                 <input type="text" id="hospital" name="hospital" placeholder="Enter hospital name" required>
 
-
-
-                     <!-- HOSPITAL ADDRESS -->
-
-                <label for="address">
-
-                    Hospital Address
-
-                </label>
-
-
+                <label for="address">Hospital Address</label>
                 <textarea id="address" name="address" placeholder="Enter hospital address" rows="4" required></textarea>
 
+                <label for="bloodUnits">Required Blood Units</label>
+                <input type="number" id="bloodUnits" name="bloodUnits" placeholder="Enter number of blood units" min="1" required>
 
-
-                     <!-- BLOOD UNITS -->
-
-                <label for="bloodUnits">
-
-                    Required Blood Units
-
-                </label>
-
-
-                <input type="number" id="bloodUnits" name="bloodUnits" placeholder="Enter number of blood units" min="1"
-                    required>
-
-
-
-                     REQUIRED DATE
-
-                <label for="requiredDate">
-
-                    Blood Required Date
-
-                </label>
-
-
+                <label for="requiredDate">Blood Required Date</label>
                 <input type="date" id="requiredDate" name="requiredDate" required>
 
-
-
-                     <!-- URGENCY -->
-
-                <label for="urgency">
-
-                    Urgency Level
-
-                </label>
-
-
+                <label for="urgency">Urgency Level</label>
                 <select id="urgency" name="urgency" required>
-
-                    <option value="">
-
-                        Select Urgency Level
-
-                    </option>
-
-                    <option value="Normal">
-
-                        Normal
-
-                    </option>
-
-                    <option value="Urgent">
-
-                        Urgent
-
-                    </option>
-
-                    <option value="Emergency">
-
-                        Emergency
-
-                    </option>
-
+                    <option value="">Select Urgency Level</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Urgent">Urgent</option>
+                    <option value="Emergency">Emergency</option>
                 </select>
 
+                <label for="medicalInfo">Medical Information</label>
+                <textarea id="medicalInfo" name="medicalInfo" placeholder="Enter relevant medical information" rows="4"></textarea>
 
-
-                     <!-- MEDICAL INFORMATION -->
-
-                <label for="medicalInfo">
-
-                    Medical Information
-
-                </label>
-
-
-                <textarea id="medicalInfo" name="medicalInfo" placeholder="Enter relevant medical information"
-                    rows="4"></textarea>
-
-
-
-                     <!-- SUBMIT -->
-
-                <button type="submit" class="submit-button">
-
-                    Create Patient Profile
-
-                </button>
-
+                <button type="submit" class="submit-button">Create Patient Profile</button>
             </form>
-
         </div>
 
+        <?php else: ?>
 
-
-             <!-- PATIENT PROFILE CARD -->
-
-        <div class="profile-card" id="profileCard">
-
-
-            <!-- CARD HEADING -->
-
+        <!-- ============================================== -->
+        <!-- VIEW 2: THE PROFILE CARD (Only shows if profile exists) -->
+        <!-- ============================================== -->
+        <div class="profile-card" id="profileCard" style="display: block;">
+            
             <div class="card-heading">
-
-                <span>
-                    PATIENT PROFILE
-                </span>
-
+                <span>PATIENT PROFILE</span>
             </div>
 
+            <?php if (!empty($profile_data['profile_image'])): ?>
+                <img src="../uploads/<?php echo htmlspecialchars($profile_data['profile_image']); ?>" alt="Patient Profile" style="width: 120px; height: 120px; margin: 0 auto 15px; display: block; object-fit: cover; border: 4px solid #2563eb; border-radius: 50%;">
+            <?php else: ?>
+                <div class="default-profile-image" id="defaultProfileImage">👤</div>
+            <?php endif; ?>
 
-
-            <!-- PROFILE IMAGE -->
-
-            <div class="default-profile-image" id="defaultProfileImage">
-
-                👤
-
-            </div>
-
-
-            <img id="cardImage" src="" alt="Patient Profile">
-
-
-
-            <!-- PATIENT NAME -->
-
-            <h2 id="cardName">
-
-                Patient Name
-
-            </h2>
-
-
-
-            <!-- BLOOD GROUP -->
+            <h2 id="cardName"><?php echo htmlspecialchars($profile_data['full_name']); ?></h2>
 
             <div class="blood-badge" id="cardBlood">
-
-                Blood Group
-
+                <?php echo htmlspecialchars($profile_data['blood_group']); ?>
             </div>
-
-
-
-                 <!-- PATIENT INFORMATION -->
 
             <div class="profile-information">
-
-
-                <!-- PHONE -->
-
+                <p><strong>📞 Phone:</strong> <span><?php echo htmlspecialchars($profile_data['phone']); ?></span></p>
+                <p><strong>✉️ Email:</strong> <span><?php echo htmlspecialchars($profile_data['email']); ?></span></p>
                 <p>
-
-                    <strong>
-                        📞 Phone:
-                    </strong>
-
-                    <span id="cardPhone"></span>
-
-                </p>
-
-
-
-                <!-- EMAIL -->
-
-                <p>
-
-                    <strong>
-                        ✉️ Email:
-                    </strong>
-
-                    <span id="cardEmail"></span>
-
-                </p>
-
-
-
-                <!-- DOB -->
-
-                <p>
-
-                    <strong>
-                        🎂 Date of Birth:
-                    </strong>
-
-                    <span id="cardDob"></span>
-
-                </p>
-
-
-
-                <!-- HOSPITAL -->
-
-                <p>
-
-                    <strong>
-                        🏥 Hospital:
-                    </strong>
-
-                    <span id="cardHospital"></span>
-
-                </p>
-
-
-
-                <!-- ADDRESS -->
-
-                <p>
-
-                    <strong>
-                        📍 Hospital Address:
-                    </strong>
-
-                    <span id="cardAddress"></span>
-
-                </p>
-
-
-
-                <!-- BLOOD UNITS -->
-
-                <p>
-
-                    <strong>
-                        🩸 Blood Units:
-                    </strong>
-
-                    <span id="cardBloodUnits"></span>
-
-                </p>
-
-
-
-                <!-- REQUIRED DATE -->
-
-                <p>
-
-                    <strong>
-                        📅 Required Date:
-                    </strong>
-
-                    <span id="cardRequiredDate"></span>
-
-                </p>
-
-
-
-                <!-- URGENCY -->
-
-                <p>
-
-                    <strong>
-                        🚨 Urgency:
-                    </strong>
-
-                    <span id="cardUrgency" class="availability-status">
-
+                    <strong>🎂 Date of Birth:</strong> 
+                    <span>
+                        <?php 
+                            $dob = date_create($profile_data['dob']);
+                            echo date_format($dob, "d M, Y");
+                        ?>
                     </span>
-
                 </p>
-
-
-
-                <!-- MEDICAL INFORMATION -->
-
+                <p><strong>🏥 Hospital:</strong> <span><?php echo htmlspecialchars($profile_data['hospital']); ?></span></p>
+                <p><strong>📍 Hospital Address:</strong> <span><?php echo htmlspecialchars($profile_data['address']); ?></span></p>
+                <p><strong>🩸 Blood Units:</strong> <span><?php echo htmlspecialchars($profile_data['blood_units']); ?></span></p>
                 <p>
-
-                    <strong>
-                        📝 Medical Information:
-                    </strong>
-
-                    <span id="cardMedicalInfo"></span>
-
+                    <strong>📅 Required Date:</strong> 
+                    <span>
+                        <?php 
+                            $req_date = date_create($profile_data['required_date']);
+                            echo date_format($req_date, "d M, Y");
+                        ?>
+                    </span>
                 </p>
-
-
+                <p>
+                    <strong>🚨 Urgency:</strong> 
+                    <span style="font-weight: bold; color: <?php echo ($profile_data['urgency'] == 'Emergency') ? '#dc2626' : (($profile_data['urgency'] == 'Urgent') ? '#ea580c' : '#15803d'); ?>;">
+                        <?php echo htmlspecialchars($profile_data['urgency']); ?>
+                    </span>
+                </p>
+                <p><strong>📝 Medical Info:</strong> <span><?php echo htmlspecialchars($profile_data['medical_info']); ?></span></p>
             </div>
-
-
-
-                 <!-- EDIT PROFILE -->
-
-            <button type="button" id="editProfile">
-
-                Edit Profile
-
-            </button>
-
-
         </div>
+        
+        <?php endif; ?>
 
     </div>
 
-
-
-         <!-- JAVASCRIPT -->
-
+    <!-- JAVASCRIPT -->
     <script src="../javascript/patient.js"></script>
-
 </body>
-
 </html>

@@ -12,24 +12,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($action == 'register') {
         // --- SIGN UP LOGIC ---
         
-        // Grab the new fields from your updated HTML form
         $name = trim($_POST['name']);
         $nid = trim($_POST['nid']);
         
         // Hash the password for security
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         
-        // Update query to include name and nid
         $stmt = $conn->prepare("INSERT INTO users (name, email, nid, password) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $name, $email, $nid, $hashed_password);
         
         if ($stmt->execute()) {
-            // Log the user in immediately after registering
-            $_SESSION['user_id'] = $stmt->insert_id;
-            header("Location: dashboard.php");
+            // SUCCESS: Send them back to the login page
+            // We intentionally do NOT set $_SESSION variables here so they aren't auto-logged in
+            header("Location: ../Html/index.html");
             exit();
         } else {
-            // Usually error 1062 means duplicate email or NID
             echo "Error: Could not register. Email or NID might already exist.";
         }
         
@@ -46,9 +43,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             // Verify the hashed password
             if (password_verify($password, $row['password'])) {
+                // Set session variables
                 $_SESSION['user_id'] = $row['id'];
-                header("Location: dashboard.php");
-                exit();
+                $_SESSION['email'] = $email; 
+                
+                // Admin Routing Check
+                if ($email === 'admin@roktolink.com') {
+                    header("Location: admin.php");
+                    exit();
+                } else {
+                    header("Location: dashboard.php");
+                    exit();
+                }
             } else {
                 echo "Incorrect password.";
             }
