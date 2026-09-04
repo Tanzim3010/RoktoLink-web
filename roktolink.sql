@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2026 at 06:03 PM
+-- Generation Time: Sep 04, 2026 at 06:29 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -48,7 +48,8 @@ CREATE TABLE `donor_profiles` (
 
 INSERT INTO `donor_profiles` (`id`, `user_id`, `full_name`, `profile_image`, `blood_group`, `phone`, `dob`, `address`, `last_donation`, `availability`) VALUES
 (1, 3, 'SomeRandomNameV2', NULL, 'AB-', '01984876967', '2002-10-30', 'Avengers Tower,NY', '2020-01-01', 'Yes'),
-(2, 4, 'dsadas', NULL, 'AB-', '01984876969', '2018-07-18', 'sdadasda', '2022-03-17', 'Yes');
+(2, 4, 'dsadas', NULL, 'AB-', '01984876969', '2018-07-18', 'sdadasda', '2022-03-17', 'Yes'),
+(3, 7, 'sady', 'donor_7_1788538410.jpg', 'A+', '01984876969', '2010-10-07', 'random shits', '2026-07-23', 'Yes');
 
 -- --------------------------------------------------------
 
@@ -80,7 +81,8 @@ CREATE TABLE `patient_profiles` (
 INSERT INTO `patient_profiles` (`id`, `user_id`, `full_name`, `profile_image`, `blood_group`, `phone`, `email`, `dob`, `hospital`, `address`, `blood_units`, `required_date`, `urgency`, `medical_info`) VALUES
 (1, 3, 'SomeRandomName', NULL, 'AB-', '01984876969', 'test1@gmail.com', '2003-11-02', 'X hospital', 'X street,Under Dr. doom\'s mansion,NY', 5, '2026-09-11', 'Urgent', 'Probably gonna die if no blood'),
 (2, 4, 'dsadsa', NULL, 'A+', '01229341123', 'test5@gmail.com', '2023-01-31', 'dsad', 'sdadsadsadad', 1, '2026-09-16', 'Urgent', 'dsadsadasd'),
-(3, 4, 'dsadsa', NULL, 'A+', '01823732311', 'dsadasdadas@gmail.com', '2023-03-01', 'dsadsa', 'dsadasda', 2, '2026-09-24', 'Normal', 'dsadsadasdsad');
+(3, 4, 'dsadsa', NULL, 'A+', '01823732311', 'dsadasdadas@gmail.com', '2023-03-01', 'dsadsa', 'dsadasda', 2, '2026-09-24', 'Normal', 'dsadsadasdsad'),
+(4, 7, 'sadyThePatient', 'patient_7_1788538473.jpg', 'AB+', '01984876967', 'sady1@gmail.com', '2017-02-09', 'X hospital', 'Doom\'s mansion', 2, '2026-09-10', 'Emergency', 'Will die');
 
 -- --------------------------------------------------------
 
@@ -102,10 +104,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `nid`, `password`) VALUES
 (1, 'Tanzimul Islam', 'tanzimul3010@gmail.com', '1111222233', '$2y$10$HSuQ5DjZHbHbK54ApYRDZeWi8g5kIJUv/IxoWVIVBAMqOJpU27tgm'),
-(2, 'Adnan Akib', 'akku42069@gmail.com', '6969696969', '$2y$10$gBtLPf54wvVQJ2Q4o1sZ.OJJ35SkKsqGPnpxN3yW65KER2/9QOH/i'),
 (3, 'test', 'test@gmail.com', '1234567890', '$2y$10$/eCc/V4OReicblwNAVm1EOa5x2HJyUvlDooqmi1EJlSSHktxYDBY6'),
 (4, 'testSub2', 'test2@gmail.com', '1234567890', '$2y$10$oe0/WabadC73Rrlqgdjd2eLPDy9U9LRq8KX4uVk/nNzUUAxbp87Am'),
-(5, 'Admin', 'admin@roktolink.com', '1234567898', '$2y$10$z1sUckqY6k6QCZwUGod.OeYcWX3qrbvOngWDWoU0uyR0IZsu81itK');
+(5, 'Admin', 'admin@roktolink.com', '1234567898', '$2y$10$z1sUckqY6k6QCZwUGod.OeYcWX3qrbvOngWDWoU0uyR0IZsu81itK'),
+(7, 'Sady', 'sady69@gmail.com', '1223456789', '$2y$10$jNWEb4RMd19y.lhh2gvvfuI2JVokszmMUDBCqTteCXYXiqlr1.ga6');
 
 --
 -- Indexes for dumped tables
@@ -140,19 +142,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `donor_profiles`
 --
 ALTER TABLE `donor_profiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `patient_profiles`
 --
 ALTER TABLE `patient_profiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables

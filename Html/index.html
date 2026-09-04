@@ -8,13 +8,18 @@
     <title>Rokto Link - Blood Donation</title>
 </head>
 
-<body>
+<!-- Added 'login-page' class to safely center only this page -->
+<body class="login-page">
+
+    <!-- RoktoLink Branding -->
+    <div class="brand-header">
+        <h1><span>Rokto</span>Link</h1>
+        <p>Donate Blood. Save Lives.</p>
+    </div>
 
     <div class="container" id="signupForm" style="display: none;">
         <h1>Register</h1>
-        <!-- Updated Form Tag -->
         <form action="../php/auth.php" method="POST">
-            <!-- Hidden action identifier -->
             <input type="hidden" name="action" value="register">
 
             <label>First Name</label>
@@ -44,9 +49,7 @@
 
     <div class="container" id="signinForm">
         <h1>Login</h1>
-        <!-- Updated Form Tag -->
         <form action="../php/auth.php" method="POST">
-            <!-- Hidden action identifier -->
             <input type="hidden" name="action" value="login">
 
             <label>Email :</label>

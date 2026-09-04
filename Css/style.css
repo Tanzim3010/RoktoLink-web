@@ -29,19 +29,46 @@ body {
 
 .container {
     width: 450px;
-
-    margin: 50px auto;
-
     padding: 30px;
-
     background: #650000;
-
     border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(192, 28, 28, 0.25);
+    margin: 0; 
+}
 
-    box-shadow:
-        0 8px 25px rgba(192, 28, 28, 0.25);
+body.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
 
-    transform: translateY(80px);
+.brand-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.brand-header h1 {
+    font-size: 46px;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.brand-header h1 span {
+    color: #ff3333;
+}
+
+.brand-header p {
+    color: #f8f9fa;
+    font-size: 15px;
+    margin-top: 5px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -144,8 +171,8 @@ body {
 
 
 .container input[type="number"] {
-
     -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 
@@ -1335,7 +1362,6 @@ body.patient-page {
 
         margin: 20px auto;
 
-        transform: translateY(20px);
     }
 
 
